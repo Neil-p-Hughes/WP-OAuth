@@ -823,6 +823,68 @@
 			</div> <!-- .wpoa-settings-section -->
 			<!-- END Login with Windows Live section -->
 
+			<!-- START Login with Custom section -->
+			<div id="wpoa-settings-section-login-with-custom" class="wpoa-settings-section">
+			<h3>Login with Custom OAuth2 provider</h3>
+			<div class='form-padding'>
+			<table class='form-table'>
+				<tr valign='top'>
+				<th scope='row'>Enabled:</th>
+				<td>
+					<input type='checkbox' name='wpoa_custom_api_enabled' value='1' <?php checked(get_option('wpoa_custom_api_enabled') == 1); ?> />
+				</td>
+				</tr>
+				
+				<tr valign='top'>
+				<th scope='row'>Client ID:</th>
+				<td>
+					<input type='text' name='wpoa_custom_api_id' value='<?php echo get_option('wpoa_custom_api_id'); ?>' />
+				</td>
+				</tr>
+				 
+				<tr valign='top'>
+				<th scope='row'>Client Secret:</th>
+				<td>
+					<input type='text' name='wpoa_custom_api_secret' value='<?php echo get_option('wpoa_custom_api_secret'); ?>' />
+				</td>
+				</tr>
+				<tr valign='top'>
+				<th scope='row'>Scope:</th>
+				<td>
+					<input type='text' name='wpoa_custom_scope' value='<?php echo get_option('wpoa_custom_scope'); ?>' />
+				</td>
+				</tr>
+				<tr valign='top'>
+				<th scope='row'>URL_AUTH:</th>
+				<td>
+					<input type='text' name='wpoa_custom_url_auth' value='<?php echo get_option('wpoa_custom_url_auth'); ?>' />
+				</td>
+				</tr>
+				<tr valign='top'>
+				<th scope='row'>URL_TOKEN:</th>
+				<td>
+					<input type='text' name='wpoa_custom_url_token' value='<?php echo get_option('wpoa_custom_url_token'); ?>' />
+				</td>
+				</tr>
+				<tr valign='top'>
+				<th scope='row'>URL_USER:</th>
+				<td>
+					<input type='text' name='wpoa_custom_url_user' value='<?php echo get_option('wpoa_custom_url_user'); ?>' />
+				</td>
+				</tr>                                                                
+			</table> <!-- .form-table -->
+			<p>
+				<strong>Instructions:</strong>
+				<ol>
+					<li>Enter your Client ID/Secret provided by your oauth provider into the fields above, then click the Save all settings button.</li>
+				</ol>
+			</p>
+			<?php submit_button('Save all settings'); ?>
+			</div> <!-- .form-padding -->
+			</div> <!-- .wpoa-settings-section -->
+			<!-- END Login with Custom section -->
+
+
 			<!-- START Login with PayPal section -->
 			<div id="wpoa-settings-section-login-with-paypal" class="wpoa-settings-section">
 			<h3>Login with PayPal</h3>

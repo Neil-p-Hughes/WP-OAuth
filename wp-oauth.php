@@ -119,6 +119,14 @@ Class WPOA {
 		'wpoa_oauth_server_api_endpoint' => '',							// any string
 		'wpoa_oauth_server_api_button_text' => '',						// any string
 
+		'wpoa_custom_api_enabled' => 0,							        // 0, 1
+		'wpoa_custom_api_id' => '',								        // any string
+		'wpoa_custom_api_secret' => '',							        // any string
+		'wpoa_custom_scope' => '',							            // any string
+		'wpoa_custom_url_auth' => '',							        // any string
+		'wpoa_custom_url_token' => '',							        // any string
+		'wpoa_custom_url_user' => '',							        // any string
+
 		'wpoa_http_util' => 'curl',										// curl, stream-context
 		'wpoa_http_util_verify_ssl' => 1,								// 0, 1
 		'wpoa_restore_default_settings' => 0,							// 0, 1
@@ -412,6 +420,7 @@ Class WPOA {
 	function wpoa_login_user($oauth_identity) {
 		// store the user info in the user session so we can grab it later if we need to register the user:
 		$_SESSION["WPOA"]["USER_ID"] = $oauth_identity["id"];
+		$_SESSION["WPOA"]["OAUTH_IDENTITY"] = $oauth_identity;
 		// try to find a matching wordpress user for the now-authenticated user's oauth identity:
 		$matched_user = $this->wpoa_match_wordpress_user($oauth_identity);
 		// handle the matched user if there is one:
@@ -452,6 +461,7 @@ Class WPOA {
 		$this->wpoa_clear_login_state();
 		$redirect_method = get_option("wpoa_login_redirect");
 		$redirect_url = "";
+
 		switch ($redirect_method) {
 			case "home_page":
 				$redirect_url = site_url();
@@ -729,6 +739,7 @@ Class WPOA {
 		$html .= $this->wpoa_login_button("itembase", "itembase", $atts);
 		$html .= $this->wpoa_login_button("reddit", "Reddit", $atts);
 		$html .= $this->wpoa_login_button("windowslive", "Windows Live", $atts);
+        $html .= $this->wpoa_login_button("custom", "Custom Provider", $atts);
 		$html .= $this->wpoa_login_button("paypal", "PayPal", $atts);
 		$html .= $this->wpoa_login_button("instagram", "Instagram", $atts);
 		$html .= $this->wpoa_login_button("battlenet", "Battlenet", $atts);
